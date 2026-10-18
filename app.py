@@ -10,7 +10,7 @@ CLEAN_PATH = Path(__file__).parent / "data" / "data_cleaned.csv"
 def main():
     st.set_page_config(page_title = "SSD Test Dashboard", layout = "wide")
     st.title("SSD Test Dashboard")
-    st.caption("Synthetic SSD test data generated using ChatGPT")
+    st.caption("Synthetic SSD test data to simulate real-world data analysis")
 
     df = pd.read_csv(CLEAN_PATH, parse_dates = ["test_timestamp"])
 
