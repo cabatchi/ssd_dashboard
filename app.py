@@ -14,6 +14,9 @@ def main():
 
     df = pd.read_csv(CLEAN_PATH, parse_dates = ["test_timestamp"])
 
+    with st.expander("View unfiltered records:"):
+        st.dataframe(df, hide_index = True)
+
     # DROPDOWN?
     models = ["All"] + sorted(df["model"].dropna().unique().tolist())
     factories = ["All"] + sorted(df["factory"].dropna().unique().tolist())
@@ -81,12 +84,10 @@ def main():
     st.pyplot(fig)
     plt.close(fig)
 
-    # Display latency statistics.
     st.subheader("Read latency by model (microseconds)")
     performance = performance_summary(filtered, "model")
     st.dataframe(performance, hide_index = True)
 
-    # Let users inspect the records behind the summaries.
     with st.expander("View filtered records"):
         st.dataframe(filtered, hide_index = True)
 
