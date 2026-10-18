@@ -14,9 +14,6 @@ def main():
 
     df = pd.read_csv(CLEAN_PATH, parse_dates = ["test_timestamp"])
 
-    with st.expander("View unfiltered records:"):
-        st.dataframe(df, hide_index = True)
-
     # DROPDOWN?
     models = ["All"] + sorted(df["model"].dropna().unique().tolist())
     factories = ["All"] + sorted(df["factory"].dropna().unique().tolist())
@@ -45,6 +42,10 @@ def main():
     col1.metric("Tests", f"{summary['tests']:,}")
     col2.metric("Failures", f"{summary['failures']:,}")
     col3.metric("Failure rate", f"{failure_rate:.2f}%")
+
+    with st.expander("View unfiltered records:"):
+        st.dataframe(df, hide_index = True)
+
 
     # FAILURE RATES
     st.subheader("Failure rate by firmware")
