@@ -53,6 +53,7 @@ def data_inspect(df: pd.DataFrame) -> None:
 def data_clean(df: pd.DataFrame) -> pd.DataFrame:
     # COPY THE DATA TO TEMP
     cleaned = df.copy()
+    cleaned["factory"] = cleaned["factory"].str.strip()
 
     # REMOVE DUPE ROWS
     cleaned = cleaned.drop_duplicates()
